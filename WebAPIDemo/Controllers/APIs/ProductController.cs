@@ -46,8 +46,10 @@ namespace WebAPIDemo.Controllers.APIs
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
+        [WebAPIDemo.Filters.ValidateModel]
         public HttpResponseMessage PostProduct(Products product)
         {
+            if (product == null) return Request.CreateResponse(HttpStatusCode.BadRequest);
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-
+using WebAPIDemo.Filters;
 namespace WebAPIDemo
 {
     public static class WebApiConfig
@@ -10,7 +10,7 @@ namespace WebAPIDemo
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            config.Filters.Add(new ValidateModelAttribute());
             // Web API routes
             config.MapHttpAttributeRoutes();
 
