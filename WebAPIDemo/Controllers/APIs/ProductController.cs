@@ -8,20 +8,31 @@ using WebAPIDemo.Models;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-
+ using WebAPIDemo.Models.Repository;
 namespace WebAPIDemo.Controllers.APIs
 {
     public class ProductController : ApiController
     {
+        private IProductRepository _product;
+
+        ProductController() 
+        {
+            _product = new ProductRepository();
+        }
+        ProductController(IProductRepository r) 
+        {
+            _product = r;
+        }
+
         private NorthwindEntities db = new NorthwindEntities();
         public IEnumerable<Products> GetProducts()
         {
-            return db.Products.AsEnumerable();
+            return _product.GetAll();
         }
 
         public Products GetProduct(int id)
         {
-            Products product = db.Products.Find(id);
+            Products product = _product.GetById(id);
             if (product == null) throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));     
             return product;
         }
@@ -30,10 +41,10 @@ namespace WebAPIDemo.Controllers.APIs
         {
             if (ModelState.IsValid && id == product.ProductID)
             {
-                db.Entry(product).State = EntityState.Modified;
+ 
                 try
                 {
-                    db.SaveChanges();
+                    _product.Update(product);
                 }
                 catch (DbUpdateException)
                 {
@@ -52,8 +63,7 @@ namespace WebAPIDemo.Controllers.APIs
             if (product == null) return Request.CreateResponse(HttpStatusCode.BadRequest);
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
+                _product.Create(product);
                 HttpResponseMessage reponse = Request.CreateResponse(HttpStatusCode.Created, product);
                 reponse.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = product.ProductID }));
                 return reponse;
@@ -62,15 +72,13 @@ namespace WebAPIDemo.Controllers.APIs
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
-        public HttpResponseMessage DeleteProduct(int Id) 
+        public HttpResponseMessage DeleteProduct(int id) 
         {
-            Products product = db.Products.Find(Id);
+            Products product = _product.GetById(id);
             if (product == null) return Request.CreateResponse(HttpStatusCode.NotFound);
-            db.Products.Remove(product);
-
             try
             {
-                db.SaveChanges();
+                _product.Delete(product);
             }
             catch (DbUpdateException) 
             {
