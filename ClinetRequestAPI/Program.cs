@@ -18,11 +18,6 @@ namespace ClinetRequestAPI
             HttpResponseMessage response = clinet.GetAsync("api/product/").Result;
             if (response.IsSuccessStatusCode)
             {
-                //var products = response.Content.ReadAsAsync<IEnumerable<Products>>().Result;
-                //foreach (var p in products)
-                //{
-                //    Console.WriteLine("Id:{0}  Name:{1} ", p.ProductID.ToString(), p.ProductName.ToString());
-                //}
                 var products = response.Content.ReadAsAsync<IEnumerable<Products>>().Result;
                 foreach (var p in products)
                 {
