@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIDemo", "WebAPIDemo\WebAPIDemo.csproj", "{78928CAB-8DCB-4C0B-BAEA-A74FE5AF5D2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinetRequestAPI", "ClinetRequestAPI\ClinetRequestAPI.csproj", "{708EB3B0-9A7E-47C4-94A5-9B3E582E773F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{78928CAB-8DCB-4C0B-BAEA-A74FE5AF5D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78928CAB-8DCB-4C0B-BAEA-A74FE5AF5D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78928CAB-8DCB-4C0B-BAEA-A74FE5AF5D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708EB3B0-9A7E-47C4-94A5-9B3E582E773F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708EB3B0-9A7E-47C4-94A5-9B3E582E773F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708EB3B0-9A7E-47C4-94A5-9B3E582E773F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708EB3B0-9A7E-47C4-94A5-9B3E582E773F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
